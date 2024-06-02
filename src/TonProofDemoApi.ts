@@ -6,7 +6,7 @@ import './patch-local-storage-for-github-pages';
 class TonProofDemoApiService {
 	localStorageKey = 'demo-api-access-token';
 
-	host = 'https://demo.tonconnect.dev';
+	host = 'https://ton-connect-rs.echohub.ru/api';
 
 	accessToken: string | null = null;
 
@@ -38,7 +38,7 @@ class TonProofDemoApiService {
 
 	async generatePayload() {
 		const response = await (
-			await fetch(`${this.host}/ton-proof/generatePayload`, {
+			await fetch(`${this.host}/ton-proof/generate-payload`, {
 				method: 'POST',
 			})
 		).json();
@@ -58,9 +58,12 @@ class TonProofDemoApiService {
 			};
 
 			const response = await (
-				await fetch(`${this.host}/ton-proof/checkProof`, {
+				await fetch(`${this.host}/ton-proof/check-proof`, {
 					method: 'POST',
 					body: JSON.stringify(reqBody),
+					headers: {
+						'Content-Type': 'application/json',
+					},
 				})
 			).json();
 
@@ -75,7 +78,7 @@ class TonProofDemoApiService {
 
 	async getAccountInfo(account: Account) {
 		const response = await (
-			await fetch(`${this.host}/dapp/getAccountInfo?network=${account.chain}`, {
+			await fetch(`${this.host}/dapp/get-account-info?network=${account.chain}`, {
 				headers: {
 					Authorization: `Bearer ${this.accessToken}`,
 					'Content-Type': 'application/json',

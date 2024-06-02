@@ -2,7 +2,7 @@ import { SendTransactionRequest, TonConnect, UserRejectsError, WalletInfo, Walle
 import { notification } from 'antd';
 import { isMobile, openLink } from 'src/utils';
 
-const dappMetadata = { manifestUrl: 'https://ton-connect.github.io/demo-dapp-with-backend/tonconnect-manifest.json' };
+const dappMetadata = { manifestUrl: 'https://ton-connect-rs.echohub.ru/tonconnect-manifest.json' };
 
 export const connector = new TonConnect(dappMetadata);
 export async function sendTransaction(tx: SendTransactionRequest, wallet: WalletInfo): Promise<{ boc: string }> {
